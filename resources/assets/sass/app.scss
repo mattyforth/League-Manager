@@ -1,0 +1,37 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+
+// Variables
+@import 'variables';
+
+// Utilities.
+@import "utilities";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+/* Global
+************/
+.page-title {
+    font-weight: bold;
+}
+.form-group {
+    .form-label {
+        font-weight: bold;
+    }
+}
+.action-button {
+    color: $blue;
+    text-decoration: none !important;
+    text-align: center;
+
+    .action-button__icon {
+        font-size: 2rem;
+    }
+
+    .action-button__label {
+        font-weight: bold;
+        display: block;
+    }
+}
