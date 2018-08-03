@@ -25,14 +25,33 @@
                     <th>Away Team</th>
                     <th>Date</th>
                     <th>Venue</th>
+                    <th></th>
+                    
                 </thead>
                 <tbody>
                     @foreach ($games as $game)
                     <tr>
-                        <td>{{ $game->home_team->team_name }}</td>
-                        <td>{{ $game->away_team->team_name }}</td>
+                        <td>
+                            <a class="link" href="/games/{{ $game->game_id }}">
+                                {{ $game->home_team->team_name }}
+                            </a>
+                        </td>
+                        <td>
+                            <a class="link" href="/games/{{ $game->game_id }}">
+                                {{ $game->away_team->team_name }}
+                            </a>
+                        </td>
                         <td>{{ date("d-m-Y H:i", strtotime($game->game_datetime)) }}</td>
                         <td>{{ $game->home_team->team_venue }}</td>
+                        <td>
+                            <form action="/games/{{ $game->game_id }}" method="POST">
+                                {{ method_field("DELETE") }}
+                                {{ csrf_field() }}
+                                <button class="link text-danger" type="submit">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>

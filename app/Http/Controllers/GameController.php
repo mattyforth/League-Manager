@@ -19,6 +19,20 @@ class GameController extends Controller
         ]);
     }
 
+    public function show($game_id)
+    {
+        $game = Game::with(["home_team", "away_team", "players"])->find($game_id);
+
+        $home_players = $game->players->where("team_id", $game->home_team->team_id);
+        $away_players = $game->players->where("team_id", $game->away_team->team_id);
+
+        return view("games.show", [
+            "game" => $game,
+            "home_players" => $home_players,
+            "away_players" => $away_players
+        ]);
+    }
+
     public function create()
     {
         $teams = Team::all();
@@ -28,7 +42,7 @@ class GameController extends Controller
         ]);
     }
 
-    public function store(Request $request)
+    public function store(StoreGame $request)
     {
         // Create the game.
         $game = Game::create($request->all());
@@ -50,5 +64,12 @@ class GameController extends Controller
         }
 
         return redirect()->route("games.index")->withSuccess("New game has been created.");
+    }
+
+    public function destroy($game_id)
+    {
+        Game::find($game_id)->delete();
+
+        return back()->withSuccess("Game successfully deleted.");
     }
 }

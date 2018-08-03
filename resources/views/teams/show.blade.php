@@ -55,7 +55,11 @@
                         <tbody>
                             @foreach ($team->players as $player)
                             <tr>
-                                <td>{{ $player->player_name }}</td>
+                                <td>
+                                    <a class="link" href="/players/{{ $player->player_id }}/edit" >
+                                        {{ $player->player_name }}
+                                    </a>
+                                </td>
                                 <td>{{ $player->player_status }}</td>
                                 <td>
                                     <form action="/unassign" method="POST">
