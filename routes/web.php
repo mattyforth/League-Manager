@@ -16,3 +16,8 @@ Route::get("/", "HomeController@index");
 Route::resource("players", "PlayerController");
 
 Route::resource("teams", "TeamController");
+
+Route::resource("games", "GameController");
+
+Route::put("assign", "AssignController@assignPlayer");
+Route::put("unassign", "AssignController@unassignPlayer");

@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);/*!
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,700);/*!
  * Font Awesome Free 5.2.0 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
  */
@@ -5149,7 +5149,7 @@ readers do not read off random characters that represent icons */
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Nunito", sans-serif;
+  --font-family-sans-serif: "Raleway", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
@@ -5188,7 +5188,7 @@ section {
 
 body {
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;
@@ -11441,7 +11441,7 @@ button.close {
   z-index: 1070;
   display: block;
   margin: 0;
-  font-family: "Nunito", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -11566,7 +11566,7 @@ button.close {
   z-index: 1060;
   display: block;
   max-width: 276px;
-  font-family: "Nunito", sans-serif;
+  font-family: "Raleway", sans-serif;
   font-style: normal;
   font-weight: 400;
   line-height: 1.6;
@@ -15588,21 +15588,63 @@ a.text-dark:focus {
   }
 }
 
-/* Global
-************/
-
-.page-title {
-  font-weight: bold;
-}
+/************************ Bootstrap Overrides ********************/
 
 .form-group .form-label {
   font-weight: bold;
 }
 
+/************************ Data Table Overrides ********************/
+
+.dataTables_wrapper .dataTables_length select {
+  display: inline-block;
+  width: auto;
+}
+
+.dataTables_wrapper .dataTables_filter {
+  text-align: right;
+}
+
+.dataTables_wrapper .dataTables_filter input[type="search"] {
+  display: inline-block;
+  margin-left: 1em;
+  width: auto;
+}
+
+.dataTables_wrapper .pagination {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+/************************ Global ********************/
+
+.link {
+  cursor: pointer;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+}
+
+.page-title {
+  font-weight: bold;
+}
+
 .action-button {
+  display: inline-block;
   color: #3490dc;
   text-decoration: none !important;
   text-align: center;
+  -webkit-appearance: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: color 200ms;
+  transition: color 200ms;
+}
+
+.action-button:hover {
+  color: #2176bd;
 }
 
 .action-button .action-button__icon {
@@ -15612,5 +15654,49 @@ a.text-dark:focus {
 .action-button .action-button__label {
   font-weight: bold;
   display: block;
+}
+
+/**************************** Header **********************/
+
+.header {
+  height: 50px;
+  margin-bottom: 2em;
+  background: #3490dc;
+}
+
+.header .header__back {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-left: 2em;
+  font-size: 1.4rem;
+  height: 50px;
+  color: #fff;
+}
+
+.header .header__link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 50px;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.4rem;
+  -webkit-transition: background 200ms;
+  transition: background 200ms;
+}
+
+.header .header__link:hover {
+  background: #2176bd;
 }
 

@@ -16,5 +16,58 @@ window.Vue = require('vue');
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data: {
+        gameTableOptions: {
+            dom: "<'float-left' f>"
+        },
+        game: {
+            home_team: "",
+            away_team: "",
+            home_players: [],
+            away_players: []
+        }
+    },
+    mounted() {
+        let self = this;
+        
+        $(".table:not(.game-table)").DataTable();
+
+        $(".game-table").DataTable(self.gameTableOptions);
+    },
+    methods: {
+        getHomeTeamPlayers() {
+            let self = this;
+
+            axios.get("/api/v1/players/team/" + self.game.home_team)
+                .then(function(response) {
+                    if (response.data.players) {
+                        $("#home-table").DataTable().destroy();
+
+                        self.game.home_players = response.data.players;
+
+                        self.$nextTick(function() {
+                            $("#home-table").DataTable(self.gameTableOptions);
+                        });
+                    }
+                });
+        },
+        getAwayTeamPlayers() {
+            let self = this;
+
+            axios.get("/api/v1/players/team/" + self.game.away_team)
+                .then(function(response) {
+                    if (response.data.players) {
+                        $("#away-table").DataTable().destroy();
+
+                        self.game.away_players = response.data.players;
+                        console.log(response);
+
+                        self.$nextTick(function() {
+                            $("#away-table").DataTable(self.gameTableOptions);
+                        });
+                    }
+                });
+        }
+    }
 });

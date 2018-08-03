@@ -3,6 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Team;
+use App\Observers\TeamObserver;
+use App\Player;
+use App\Observers\PlayerObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +17,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Team::observe(TeamObserver::class);
+        Player::observe(PlayerObserver::class);
     }
 
     /**

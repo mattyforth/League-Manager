@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 
 // Variables
@@ -11,20 +11,59 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-/* Global
-************/
-.page-title {
-    font-weight: bold;
-}
+/************************ Bootstrap Overrides ********************/
 .form-group {
     .form-label {
         font-weight: bold;
     }
 }
+
+/************************ Data Table Overrides ********************/
+.dataTables_wrapper {
+    .dataTables_length {
+        select {
+            display: inline-block;
+            width: auto;
+        }
+    }
+    .dataTables_filter {
+        text-align: right;
+
+        input[type="search"] {
+            display: inline-block;
+            margin-left: 1em;
+            width: auto;
+        }
+    }
+    .pagination {
+        justify-content: flex-end;   
+    }
+}
+
+/************************ Global ********************/
+.link {
+    cursor: pointer;
+    -webkit-appearance: none;
+    background: none;
+    border: none;
+}
+.page-title {
+    font-weight: bold;
+}
 .action-button {
+    display: inline-block;
     color: $blue;
     text-decoration: none !important;
     text-align: center;
+    -webkit-appearance: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 200ms;
+
+    &:hover {
+        color: darken($blue, 10%);
+    }
 
     .action-button__icon {
         font-size: 2rem;
@@ -33,5 +72,37 @@
     .action-button__label {
         font-weight: bold;
         display: block;
+    }
+}
+
+/**************************** Header **********************/
+.header {
+    height: $header-height;
+    margin-bottom: 2em;
+    background: $blue;
+
+    .header__back {
+        display: flex;
+        align-items: center;
+        margin-left: 2em;
+        font-size: 1.4rem;
+        height: $header-height;
+        color: $white;
+    }
+
+    .header__link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: $header-height;
+        text-decoration: none;
+        color: $white;
+        font-weight: 700;
+        font-size: 1.4rem;
+        transition: background 200ms;
+
+        &:hover {
+            background: darken($blue, 10%);
+        }
     }
 }

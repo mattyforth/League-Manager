@@ -18,12 +18,14 @@ class PlayerController extends Controller
         ]);
     }
 
-    public function show($id)
+    public function edit($id)
     {
         $player = Player::find($id);
+        $teams = Team::all();
 
-        return view("players.show", [
-            "player" => $player
+        return view("players.edit", [
+            "player" => $player,
+            "teams" => $teams
         ]);
     }
 
@@ -41,7 +43,12 @@ class PlayerController extends Controller
         $team_id = $request->team_id;
 
         // Count how many players the team currently has.
-        $playerCount = Team::find($team_id)->players()->count();
+        if ($team_id) {
+            $playerCount = Team::find($team_id)->players()->count();
+        } else {
+            $playerCount = 0;
+        }
+        
 
         if ($playerCount >= 21) {
             return redirect()->route("players.create")->withErrors("Team already has 21 players.");
@@ -51,5 +58,23 @@ class PlayerController extends Controller
         $player = Player::create($request->all());
 
         return redirect()->route("players.create")->withSuccess("{$player->player_name} created successfully!");
+    }
+
+    public function update($player_id, StorePlayer $request)
+    {
+        $player = Player::find($player_id);
+        $player->update($request->all());
+        $player->save();
+    
+        return redirect()->route("players.edit", ["player_id" => $player->player_id])->withSuccess("Player updated successfully.");
+    }
+
+    public function destroy($player_id)
+    {
+        $player = Player::find($player_id);
+
+        $player->delete();
+        
+        return back()->withSuccess("Player deleted.");
     }
 }

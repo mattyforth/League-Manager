@@ -20,23 +20,23 @@ class Player extends Model
 
     public function games()
     {
-        return $this->hasMany("App\Games", "game_id");
+        return $this->belongsToMany("App\Game", "game_players", "player_id");
     }
 
     public function setPlayerIdAttribute($value)
     {
         // Create the ID for this player based on their surname.
         $name = $this->player_name;
-        $explodedName = explode(" ", $name); 
-        $surname = $explodedName[count($explodedName) - 1];
+        $exploded_name = explode(" ", $name); 
+        $surname = $exploded_name[count($exploded_name) - 1];
 
-        $stringCode = strtoupper(substr($surname, 0, 3));
+        $string_code = strtoupper(substr($surname, 0, 3));
 
         // Count current players and add a unique code to the ID.
-        $playerCount = Player::all()->count();
-        $numberCode = sprintf("%'.04d", $playerCount + 1);
+        $player_count = Player::all()->count();
+        $number_code = sprintf("%'.04d", $player_count + 1);
 
-        $this->attributes["player_id"] = $stringCode . $numberCode;
+        $this->attributes["player_id"] = $string_code . $number_code;
     }
 
     public function getPlayerStatusAttribute($value)

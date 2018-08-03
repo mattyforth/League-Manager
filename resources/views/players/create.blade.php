@@ -14,7 +14,7 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-6 offset-3">
+                <div class="col-8 offset-2">
                     <form action="/players" method="POST">
                         {{ csrf_field() }}
                         <div class="form-group">
@@ -35,6 +35,7 @@
                         <div class="form-group">
                             <label class="form-label">Name</label>
                             <select class="form-control" name="team_id">
+                                <option value="">No Team</option>
                                 @foreach ($teams as $team)
                                 <option value="{{ $team->team_id }}">{{ $team->team_name }}</option>
                                 @endforeach
