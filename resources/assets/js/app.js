@@ -19,7 +19,9 @@ const app = new Vue({
     el: '#app',
     data: {
         gameTableOptions: {
-            dom: "<'float-left' f>"
+            dom: "<'float-left' f>",
+            lengthChange: false,
+            paging: false
         },
         game: {
             home_team: "",
