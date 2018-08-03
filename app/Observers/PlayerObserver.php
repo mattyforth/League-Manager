@@ -3,6 +3,7 @@
 namespace App\Observers;
 
 use App\GamePlayer;
+use App\Player;
 
 class PlayerObserver
 {
